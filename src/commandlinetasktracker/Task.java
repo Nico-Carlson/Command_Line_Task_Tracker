@@ -15,7 +15,7 @@ public class Task {
     private boolean completed = false;
 
     // constructors
-    Task(int ID, String title, String description, category, int priorty, boolean completed){
+    Task(int ID, String title, String description, String category, int priorty, boolean completed){
         this.ID = ID;
         this.title = title;
         this.description = description;
