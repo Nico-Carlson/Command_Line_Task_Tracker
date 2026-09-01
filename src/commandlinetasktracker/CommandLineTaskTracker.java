@@ -33,33 +33,39 @@ public class CommandLineTaskTracker {
                 7 - Save Tasks
                 8 - Exit
                 """;
-        boolean endLoop = false;
 
-        // Get user input for choice.
-        // todo: add loop
-        // todo: add try/catch
-        System.out.println(msg);
-        choice = Integer.parseInt(myScan.nextLine());
+        // The loop runs until the user terminates the session.
+        while (true) {
 
-        // Call the appropriate function based on choice.
-        if (choice == 1) {
-            System.out.println("Add a new task");
-        } else if (choice == 2) {
-            System.out.println("List all tasks");
-        } else if (choice == 3) {
-            System.out.println("Complete a task");
-        } else if (choice == 4) {
-            System.out.println("Delete task");
-        } else if (choice == 5) {
-            System.out.println("search tasks");
-        } else if (choice == 6) {
-            System.out.println("show stats");
-        } else if (choice == 7) {
-            System.out.println("save tasks");
-        } else if (choice == 8) {
-            System.out.println("Goodbye");
-        } else {
-            System.out.println("Invalid input. Please try again.");
+            // Get user input for choice.
+            System.out.println(msg);
+            try {
+                choice = Integer.parseInt(myScan.nextLine());
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+            // Call the appropriate function based on choice.
+            if (choice == 1) {
+                System.out.println("Add a new task");
+            } else if (choice == 2) {
+                System.out.println("List all tasks");
+            } else if (choice == 3) {
+                System.out.println("Complete a task");
+            } else if (choice == 4) {
+                System.out.println("Delete task");
+            } else if (choice == 5) {
+                System.out.println("search tasks");
+            } else if (choice == 6) {
+                System.out.println("show stats");
+            } else if (choice == 7) {
+                System.out.println("save tasks");
+            } else if (choice == 8) {
+                System.out.println("Goodbye");
+                System.exit(0);
+            } else {
+                System.out.println("Invalid input. Please try again.");
+            }
         }
     }
 }
