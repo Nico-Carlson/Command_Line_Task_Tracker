@@ -19,6 +19,19 @@ public class CommandLineTaskTracker {
         // Initialize a scanner to take user input.
         Scanner myScan = new Scanner(System.in);
 
+        // TESTING DATA - Remove when load functionality is running.
+        int[] testIDs = {1, 2, 3};
+        String[] testNames = {"task1", "task2", "task3"};
+        String[] testDescriptions = {"desc1", "desc2", "desc3"};
+        String[] testCategories = {"Personal", "Work", "School"};
+        int[] testPriorities = {1, 3, 5};
+
+        for(int i = 0; i < testIDs.length; i++) {
+            Task testTask = new Task(testIDs[i], testNames[i], testDescriptions[i], testCategories[i], testPriorities[i], false);
+            TaskManager.taskArrayList.add(testTask);
+        }
+        // END OF TEST DATA
+
         // Initialize variables.
         int choice = 0;
         String msg = """
@@ -47,24 +60,26 @@ public class CommandLineTaskTracker {
 
             // Call the appropriate function based on choice.
             if (choice == 1) {
-                System.out.println("Add a new task");
+                System.out.println("Add a new task\n");
+                TaskManager.addTask();
             } else if (choice == 2) {
-                System.out.println("List all tasks");
+//                System.out.println("List all tasks");
+                TaskManager.listTasks();
             } else if (choice == 3) {
-                System.out.println("Complete a task");
+                System.out.println("Complete a task\n");
             } else if (choice == 4) {
-                System.out.println("Delete task");
+                System.out.println("Delete task\n");
             } else if (choice == 5) {
-                System.out.println("search tasks");
+                System.out.println("search tasks\n");
             } else if (choice == 6) {
-                System.out.println("show stats");
+                System.out.println("show stats\n");
             } else if (choice == 7) {
-                System.out.println("save tasks");
+                System.out.println("save tasks\n");
             } else if (choice == 8) {
-                System.out.println("Goodbye");
+                System.out.println("Goodbye\n");
                 System.exit(0);
             } else {
-                System.out.println("Invalid input. Please try again.");
+                System.out.println("Invalid input. Please try again.\n");
             }
         }
     }

@@ -10,16 +10,21 @@ import java.util.ArrayList;
 
 public class TaskManager {
 
-    // Initialize a scanner.
-    Scanner myScan = new Scanner(System.in);
-    ArrayList<Task> taskArrayList = ArrayList<>();
+    // Initialize a scanner and arraylist.
+    static Scanner myScan = new Scanner(System.in);
+    static ArrayList<Task> taskArrayList = new ArrayList<>();
 
-    // initialize ID and completed
-    int taskID = taskArrayList.;        // get length of arraylist for id number
-    boolean taskCompleted = false;
+    // Initialize variables.
+    static int taskID = taskArrayList.size();        // get length of arraylist for id number
+    static String taskTitle = "";
+    static String taskCategory = "";
+    static String taskDescription = "";
+    static int taskPriority = 0;
+    static boolean taskCompleted = false;
 
     // This function creates a new task.
     public static void addTask() {
+
         System.out.println("Enter task name: ");
         taskTitle = myScan.nextLine();
 
@@ -32,13 +37,26 @@ public class TaskManager {
         System.out.println("Enter task priority (1-5): ");
         taskPriority = Integer.parseInt(myScan.nextLine());
 
-        // generate unique ID
-        // to do - figure out how to get last known task id
-        taskID += 1;
+        // Generate unique ID
+        taskID = taskArrayList.getLast().getID() + 1;
+
+        // Create a new task.
+        Task newTask = new Task(taskID, taskTitle, taskDescription,
+                                taskCategory, taskPriority, taskCompleted);
+
+        // Add task to task array list.
+        taskArrayList.add(newTask);
+
     }
 
     // This function will display a list of all tasks.
     public static void listTasks() {
+
+        int count = 1;
+
+        for (Task task : taskArrayList) {
+            System.out.println(task + "\n");
+        }
 
     }
 
