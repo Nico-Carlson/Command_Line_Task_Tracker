@@ -1,20 +1,23 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ * Developers: Parker Basham, Nico Carlson
+ * Project: Command-Line Task Tracker
+ * Date:
+ * Description: This app is a command line task manager
+ * meant to review core java concepts and build a complete
+ * and useful program.
  */
+
 package commandlinetasktracker;
 
-/**
- *
- * @author nico
- */
 public class CommandLineTaskTracker {
 
-    /**
-     * @param args the command line arguments
-     */
+    // The main method serves as the main menu for the app.
     public static void main(String[] args) {
-        // TODO code application logic here
+
+        // Initialize variables.
+        int choice = -1;
+
+
     }
-    
+
 }
