@@ -63,12 +63,14 @@ public class CommandLineTaskTracker {
                 System.out.println("Add a new task\n");
                 TaskManager.addTask();
             } else if (choice == 2) {
-//                System.out.println("List all tasks");
+                System.out.println("List all tasks\n");
                 TaskManager.listTasks();
             } else if (choice == 3) {
                 System.out.println("Complete a task\n");
+                TaskManager.completeTask();
             } else if (choice == 4) {
                 System.out.println("Delete task\n");
+                TaskManager.deleteTask();
             } else if (choice == 5) {
                 System.out.println("search tasks\n");
             } else if (choice == 6) {
