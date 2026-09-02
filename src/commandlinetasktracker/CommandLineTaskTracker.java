@@ -22,17 +22,18 @@ public class CommandLineTaskTracker {
         // Initialize a scanner to take user input.
         Scanner myScan = new Scanner(System.in);
 
+        // Save/Load states are working but leaving this in case...
         // TESTING DATA - Remove when load functionality is running.
-        int[] testIDs = {1, 2, 3};
-        String[] testNames = {"task1", "task2", "task3"};
-        String[] testDescriptions = {"desc1", "desc2", "desc3"};
-        String[] testCategories = {"Personal", "Work", "School"};
-        int[] testPriorities = {1, 3, 5};
+//        int[] testIDs = {1, 2, 3};
+//        String[] testNames = {"task1", "task2", "task3"};
+//        String[] testDescriptions = {"desc1", "desc2", "desc3"};
+//        String[] testCategories = {"Personal", "Work", "School"};
+//        int[] testPriorities = {1, 3, 5};
 
-        for(int i = 0; i < testIDs.length; i++) {
-            Task testTask = new Task(testIDs[i], testNames[i], testDescriptions[i], testCategories[i], testPriorities[i], false);
-            TaskManager.taskArrayList.add(testTask);
-        }
+//        for(int i = 0; i < testIDs.length; i++) {
+//            Task testTask = new Task(testIDs[i], testNames[i], testDescriptions[i], testCategories[i], testPriorities[i], false);
+//            TaskManager.taskArrayList.add(testTask);
+//        }
         // END OF TEST DATA
 
         // Initialize variables.

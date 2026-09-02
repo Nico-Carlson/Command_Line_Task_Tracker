@@ -1,24 +1,18 @@
 1
-task1
-desc1
-Personal
+Task 1
+Description 1
+Category 1
 1
 false
 2
-task2
-desc2
-Work
-3
+Task 2
+Description 2
+Category 2
+2
 false
 3
-task3
-desc3
-School
-5
-false
-4
-Buy eggs
-buy eggs from the store
-Shopping
+Task 3
+Description 3
+Category 3
 3
 false

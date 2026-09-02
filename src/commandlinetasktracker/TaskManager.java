@@ -5,12 +5,9 @@
 
 package commandlinetasktracker;
 
+import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.File;
-import java.io.FileNotFoundException;
 
 public class TaskManager {
 
@@ -80,25 +77,29 @@ public class TaskManager {
     }
 
     // This task loads new tasks...
+    // It will only run at the start of the program once
     public static void loadTasks() {
 
         // set which file to read
-        File myObj = new File("savedTasks.txt");
+        File myFile = new File("savedTasks.txt");
 
         // try to read the file
-        try (Scanner myReader = new Scanner(myObj)) {
-            while (myReader.hasNextLine()) {
+        try (BufferedReader myReader = new BufferedReader(new FileReader(myFile))) {
+
+            // set a temp variable to check if the file still has data to read
+            String firstLine;
+            while ((firstLine = myReader.readLine()) != null) {
 
                 // assign variables for each property
-                int taskID = myReader.nextInt();
-                String taskTitle = myReader.next();
-                String taskDescription = myReader.next();
-                String taskCategory = myReader.next();
-                int taskPriority = myReader.nextInt();
-                boolean taskCompleted = myReader.nextBoolean();
+                // since the first line read is stored in buffer just use that for the first value
+                int taskID = Integer.parseInt(firstLine);
+                String taskTitle = myReader.readLine();
+                String taskDescription = myReader.readLine();
+                String taskCategory = myReader.readLine();
+                int taskPriority = Integer.parseInt(myReader.readLine());
+                boolean taskCompleted = Boolean.parseBoolean(myReader.readLine());
 
-
-                // Create a new task.
+                // Create a new task with the new variables
                 Task newTask = new Task(taskID, taskTitle, taskDescription,
                         taskCategory, taskPriority, taskCompleted);
 
@@ -106,9 +107,9 @@ public class TaskManager {
                 taskArrayList.add(newTask);
 
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
+        // send error message if it couldn't read the file
+        } catch (IOException e) {
+            System.out.println("An error occurred: " + e.getMessage());
         }
     }
 
@@ -140,7 +141,6 @@ public class TaskManager {
             // use this to find the directory its being saved if needed
             // System.out.println(System.getProperty("user.dir"));
 
-
             // iterate through ArrayList and write as we go
             for (int i = 0; i < taskArrayList.size(); i++){
 
@@ -152,15 +152,15 @@ public class TaskManager {
                 int priority = taskArrayList.get(i).getPriority();
                 boolean completed = taskArrayList.get(i).isCompleted();
 
-
+                // format it to the txt file so each property is on a new line (makes reading easier)
                 myWriter.write(ID + "\n" + title + "\n" + description + "\n" +
                                 category + "\n" + priority + "\n" + completed + "\n");
             }
 
             // close the writer
-            myWriter.close();  // must close manually
+            myWriter.close();
 
-            // confirmation data was saved
+            // confirmation message that data was saved
             System.out.println("Successfully saved the task list.\n");
         } catch (IOException e) {
             System.out.println("An error occurred.");
