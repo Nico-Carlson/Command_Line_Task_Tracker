@@ -16,6 +16,9 @@ public class CommandLineTaskTracker {
     // The main method serves as the main menu for the app.
     public static void main(String[] args) {
 
+        // load any saved tasks first
+        TaskManager.loadTasks();
+
         // Initialize a scanner to take user input.
         Scanner myScan = new Scanner(System.in);
 
@@ -75,6 +78,7 @@ public class CommandLineTaskTracker {
                 System.out.println("show stats\n");
             } else if (choice == 7) {
                 System.out.println("save tasks\n");
+                TaskManager.saveTasks();
             } else if (choice == 8) {
                 System.out.println("Goodbye\n");
                 System.exit(0);

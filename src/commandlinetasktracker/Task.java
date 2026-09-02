@@ -11,16 +11,16 @@ public class Task {
     private String title = "";
     private String description = "";
     private String category = "";
-    private int priorty;
+    private int priority;
     private boolean completed = false;
 
     // constructors
-    Task(int ID, String title, String description, String category, int priorty, boolean completed){
+    Task(int ID, String title, String description, String category, int priority, boolean completed){
         this.ID = ID;
         this.title = title;
         this.description = description;
         this.category = category;
-        this.priorty = priorty;
+        this.priority = priority;
         this.completed = completed;
     }
 
@@ -57,12 +57,12 @@ public class Task {
         this.category = category;
     }
 
-    public int getPriorty() {
-        return priorty;
+    public int getPriority() {
+        return priority;
     }
 
-    public void setPriorty(int priorty) {
-        this.priorty = priorty;
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 
     public boolean isCompleted() {
@@ -77,7 +77,7 @@ public class Task {
     @Override
     public String toString() {
         return (this.ID + " " + this.title + " (" + this.category + ")\n" +
-                "Priority of " + this.priorty + "\nCompleted? " + this.completed +
+                "Priority of " + this.priority + "\nCompleted? " + this.completed +
                 "\n" + this.description);
     }
 
