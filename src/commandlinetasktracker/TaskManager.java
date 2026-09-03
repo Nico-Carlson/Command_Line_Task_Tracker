@@ -26,6 +26,7 @@ public class TaskManager {
     // This function creates a new task.
     public static void addTask() {
 
+        // Get user input values.
         System.out.println("Enter task name: ");
         taskTitle = myScan.nextLine();
 
@@ -53,18 +54,50 @@ public class TaskManager {
     // This function will display a list of all tasks.
     public static void listTasks() {
 
-        int count = 1;
-
+        /*
+         Iterate through the arraylist of tasks
+         and display to the user.
+         */
         for (Task task : taskArrayList) {
             System.out.println(task + "\n");
         }
-
     }
 
-    // This function will update a tasks to completed.
+    // This function will update a tasks to "completed".
     public static void completeTask() {
 
+        // Get an id from the user.
+        // todo: helper function for user inputs?
+        System.out.println("What is the id of the task to complete: ");
+        taskID = Integer.parseInt(myScan.nextLine());
+
+        // Iterate through the list to find the correct task.
+        for (Task t : taskArrayList) {
+
+            // If the id matches, update completed.
+            if (taskID == t.getID()) {
+                t.setCompleted(true);
+            }
+        }
     }
+
+    // This function allows the user to delete a task.
+    public static void deleteTask() {
+
+        // Get an id from the user.
+        System.out.println("What is the id of the task to complete: ");
+        taskID = Integer.parseInt(myScan.nextLine());
+
+        // Iterate through the list to find the correct task.
+        for (Task t : taskArrayList) {
+
+            // If the id matches, update completed.
+            if (taskID == t.getID()) {
+                taskArrayList.remove(t);
+            }
+        }
+    }
+
 
     // This function will allow the user to search task titles.
     public static void searchTasks() {
