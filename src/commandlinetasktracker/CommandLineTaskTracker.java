@@ -77,6 +77,7 @@ public class CommandLineTaskTracker {
                 TaskManager.deleteTask();
             } else if (choice == 5) {
                 System.out.println("search tasks\n");
+                TaskManager.searchTasks();
             } else if (choice == 6) {
                 System.out.println("show stats\n");
             } else if (choice == 7) {
