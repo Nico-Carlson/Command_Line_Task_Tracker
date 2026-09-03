@@ -112,7 +112,6 @@ public class TaskManager {
         }
     }
 
-
     // This function will allow the user to search task titles.
     public static void searchTasks() {
 
@@ -146,6 +145,40 @@ public class TaskManager {
 
     // This function displays statistics to the user.
     public static void showStats() {
+
+        // instantiate variables
+        int totalTasks = 0;
+        double completedTasks = 0.0;
+        double incompleteTasks = 0.0;
+        int highPriorityTasks = 0;
+        double completionPercentage = 0.0;
+
+        // set total tasks to length of ArrayList
+        totalTasks = taskArrayList.size();
+
+        // iterate through the ArrayList to increase counts
+        for (Task t : taskArrayList){
+
+            // if task is completed increase the count
+            if (t.isCompleted()) completedTasks++;
+
+            // if task is high priority (4 or 5) increase the count
+            if (t.getPriority() == 4 || t.getPriority() == 5) highPriorityTasks++;
+        }
+
+        // calc the incomplete tasks
+        incompleteTasks = totalTasks - completedTasks;
+
+        // calc the completion percentage
+        completionPercentage = Math.round((completedTasks / totalTasks) * 100);
+
+        // print statistics to the screen
+        System.out.println(
+                "\nTotal Tasks: " + totalTasks +
+                "\nCompleted Tasks: " + Math.round(completedTasks * 1) +
+                "\nIncomplete Tasks: " + Math.round(incompleteTasks * 1) +
+                "\nHigh Priority Tasks: " + highPriorityTasks +
+                "\nCompletion Percentage: " + completionPercentage + "%\n");
 
     }
 
