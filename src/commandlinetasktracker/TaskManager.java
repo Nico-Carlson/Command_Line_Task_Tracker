@@ -27,20 +27,25 @@ public class TaskManager {
     public static void addTask() {
 
         // Get user input values.
-        System.out.println("Enter task name: ");
-        taskTitle = myScan.nextLine();
+        try {
+            System.out.println("Enter task name: ");
+            taskTitle = myScan.nextLine();
 
-        System.out.println("Enter task category: ");
-        taskCategory = myScan.nextLine();
+            System.out.println("Enter task category: ");
+            taskCategory = myScan.nextLine();
 
-        System.out.println("Enter task description: ");
-        taskDescription = myScan.nextLine();
+            System.out.println("Enter task description: ");
+            taskDescription = myScan.nextLine();
 
-        System.out.println("Enter task priority (1-5): ");
-        taskPriority = Integer.parseInt(myScan.nextLine());
+            System.out.println("Enter task priority (1-5): ");
+            taskPriority = Integer.parseInt(myScan.nextLine());
 
-        // Generate unique ID
-        taskID = taskArrayList.getLast().getID() + 1;
+            // Generate unique ID
+            taskID = taskArrayList.getLast().getID() + 1;
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
         // Create a new task.
         Task newTask = new Task(taskID, taskTitle, taskDescription,
@@ -67,9 +72,13 @@ public class TaskManager {
     public static void completeTask() {
 
         // Get an id from the user.
-        // todo: helper function for user inputs?
-        System.out.println("What is the id of the task to complete: ");
-        taskID = Integer.parseInt(myScan.nextLine());
+        try {
+            System.out.println("What is the id of the task to complete: ");
+            taskID = Integer.parseInt(myScan.nextLine());
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
         // Iterate through the list to find the correct task.
         for (Task t : taskArrayList) {
@@ -85,8 +94,13 @@ public class TaskManager {
     public static void deleteTask() {
 
         // Get an id from the user.
-        System.out.println("What is the id of the task to complete: ");
-        taskID = Integer.parseInt(myScan.nextLine());
+        try {
+            System.out.println("What is the id of the task to complete: ");
+            taskID = Integer.parseInt(myScan.nextLine());
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
         // Iterate through the list to find the correct task.
         for (Task t : taskArrayList) {
@@ -101,6 +115,32 @@ public class TaskManager {
     // This function will allow the user to search task titles.
     public static void searchTasks() {
 
+        // Initialize variable to store search.
+        String searchTxt = "";
+        boolean foundTask = false;
+
+        // Get user input for task title.
+        try {
+            System.out.println("What is the title of the task: ");
+            searchTxt = myScan.nextLine();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        // Iterate through the arraylist to find the correct task.
+        for (Task t : taskArrayList) {
+
+            // Check to see if taskTitle matches.
+            if (t.getTitle().contains(searchTxt)) {
+                System.out.println(t);
+                foundTask = true;
+            }
+        }
+
+        // If no match was found, inform the user.
+        if (!foundTask) {
+            System.out.println("No task matching " + searchTxt + " was found");
+        }
     }
 
     // This function displays statistics to the user.
