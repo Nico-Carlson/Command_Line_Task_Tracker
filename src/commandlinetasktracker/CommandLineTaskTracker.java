@@ -79,6 +79,7 @@ public class CommandLineTaskTracker {
                 System.out.println("search tasks\n");
             } else if (choice == 6) {
                 System.out.println("show stats\n");
+                TaskManager.showStats();
             } else if (choice == 7) {
                 System.out.println("save tasks\n");
                 TaskManager.saveTasks();

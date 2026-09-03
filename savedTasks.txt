@@ -3,7 +3,7 @@ Task 1
 Description 1
 Category 1
 1
-false
+true
 2
 Task 2
 Description 2
@@ -15,4 +15,22 @@ Task 3
 Description 3
 Category 3
 3
+false
+4
+Task 4
+Desc 4
+Cat 4
+4
+false
+5
+Task 5
+Desc 5
+Cat 5
+5
+false
+6
+Task 6
+Desc 6
+Cat 6
+2
 false
