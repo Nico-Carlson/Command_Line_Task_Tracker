@@ -4,14 +4,14 @@
 ---
 
 ## To Do
-- needs spacing after user adds/completes/deletes/searching a new task
-- you can add improper types when adding a task (doesn't seem to break it but it also doesn't fit the form)
-    - adding an "empty" task kept the ID from the last task
-- give a confirmation of what task was completed/deleted
-- when choosing what task to delete maybe add a list of all current task IDs and names?
-- search seems to be case sensitive 
-- move the create file to the load not save function
-- when completeing/deleting a task I can type a string without being prompted to enter a task ID
+- ~~needs spacing after user adds/completes/deletes/searching a new task~~
+- ~~you can add improper types when adding a task (doesn't seem to break it but it also doesn't fit the form)~~
+- ~~adding an "empty" task kept the ID from the last task~~
+- ~~give a confirmation of what task was completed/deleted~~
+- ~~when choosing what task to delete maybe add a list of all current task IDs and names?~~
+- ~~search seems to be case sensitive~~ 
+- ~~move the create file to the load not save function~~
+- ~~when completeing/deleting a task I can type a string without being prompted to enter a task ID~~
  
 
 ---
