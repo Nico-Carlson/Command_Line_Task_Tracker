@@ -39,6 +39,7 @@ public class CommandLineTaskTracker {
         // Initialize variables.
         int choice = 0;
         String msg = """
+                
                 Welcome to the task manager! 
                 Please select and option (1-8) 
                 1 - Add a new task
