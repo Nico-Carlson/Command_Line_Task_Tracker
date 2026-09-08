@@ -22,38 +22,48 @@ public class TaskManager {
     static String taskDescription = "";
     static int taskPriority = 0;
     static boolean taskCompleted = false;
+    static String done = "n";
 
     // This function creates a new task.
     public static void addTask() {
 
-        // Get user input values.
-        try {
-            System.out.println("Enter task name: ");
-            taskTitle = myScan.nextLine();
+        while (!done.equals("n")) {
+            // Get user input values.
+            try {
+                System.out.println("Enter task name: ");
+                taskTitle = myScan.nextLine();
 
-            System.out.println("Enter task category: ");
-            taskCategory = myScan.nextLine();
+                System.out.println("Enter task category: ");
+                taskCategory = myScan.nextLine();
 
-            System.out.println("Enter task description: ");
-            taskDescription = myScan.nextLine();
+                System.out.println("Enter task description: ");
+                taskDescription = myScan.nextLine();
 
-            System.out.println("Enter task priority (1-5): ");
-            taskPriority = Integer.parseInt(myScan.nextLine());
+                System.out.println("Enter task priority (1-5): ");
+                taskPriority = Integer.parseInt(myScan.nextLine());
 
-            // Generate unique ID
-            taskID = taskArrayList.getLast().getID() + 1;
+                // Generate unique ID
+                taskID = taskArrayList.getLast().getID() + 1;
 
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+                // ask user if they'd like to repeat function
+                System.out.println("Would you like to add another task? (y/n): ");
+                done = myScan.nextLine();
+
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                System.out.println("Improper Input... Try again\n");
+
+                // restart loop if invalid input
+                continue;
+            }
+
+            // Create a new task.
+            Task newTask = new Task(taskID, taskTitle, taskDescription,
+                    taskCategory, taskPriority, taskCompleted);
+
+            // Add task to task array list.
+            taskArrayList.add(newTask);
         }
-
-        // Create a new task.
-        Task newTask = new Task(taskID, taskTitle, taskDescription,
-                                taskCategory, taskPriority, taskCompleted);
-
-        // Add task to task array list.
-        taskArrayList.add(newTask);
-
     }
 
     // This function will display a list of all tasks.
@@ -73,30 +83,49 @@ public class TaskManager {
 
         // Initialize taskFound.
         boolean taskFound = false;
+        done = "y";
 
-        // Get an id from the user.
-        try {
-            System.out.println("What is the id of the task to complete: ");
-            taskID = Integer.parseInt(myScan.nextLine());
 
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        while (!done.equals("n")) {
 
-        // Iterate through the list to find the correct task.
-        for (Task t : taskArrayList) {
-
-            // If the id matches, update completed.
-            if (taskID == t.getID()) {
-                t.setCompleted(true);
-                taskFound = true;
-                break;
+            // Display current tasks to choose from
+            for(Task t: taskArrayList){
+                System.out.println(t.getID() + ": " + t.getTitle());
             }
-        }
 
-        // Let the user know if no such task exists.
-        if (!taskFound) {
-            System.out.println("No such task id matches: " + taskID + "\n");
+            // Get an id from the user.
+            try {
+                System.out.println("What is the id of the task to complete: ");
+                taskID = Integer.parseInt(myScan.nextLine());
+
+
+            // Iterate through the list to find the correct task.
+            for (Task t : taskArrayList) {
+
+                // If the id matches, update completed.
+                if (taskID == t.getID()) {
+                    t.setCompleted(true);
+                    taskFound = true;
+                    break;
+                }
+            }
+
+            // Let the user know if no such task exists.
+            if (!taskFound) {
+                System.out.println("No such task id matches: " + taskID + "\n");
+            }
+
+            // Let the user know what was changed
+            System.out.println("Task " + taskID + " was completed.\n");
+
+            // ask user if they'd like to repeat function
+            System.out.println("Would you like to complete another task? (y/n): ");
+            done = myScan.nextLine();
+
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
         }
     }
 
@@ -105,32 +134,48 @@ public class TaskManager {
 
         // Initialize taskFound.
         boolean taskFound = false;
+        done = "y";
 
-        // Get an id from the user.
-        try {
-            System.out.println("What is the id of the task to delete: ");
-            taskID = Integer.parseInt(myScan.nextLine());
+        while (!done.equals("n")) {
 
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
-        // Iterate through the list to find the correct task.
-        for (Task t : taskArrayList) {
-
-            // If the id matches, update completed.
-            if (taskID == t.getID()) {
-                taskArrayList.remove(t);
-                taskFound = true;
-                break;
+            // Display current tasks to choose from
+            for(Task t: taskArrayList){
+                System.out.println(t.getID() + ": " + t.getTitle());
             }
-        }
 
-        // Let the user know if no such task exists.
-        if (!taskFound) {
-            System.out.println("No such task id matches: " + taskID + "\n");
-        }
+            // Get an id from the user.
+            try {
+                System.out.println("What is the id of the task to delete: ");
+                taskID = Integer.parseInt(myScan.nextLine());
 
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+
+            // Iterate through the list to find the correct task.
+            for (Task t : taskArrayList) {
+
+                // If the id matches, update completed.
+                if (taskID == t.getID()) {
+                    taskArrayList.remove(t);
+                    taskFound = true;
+                    break;
+                }
+            }
+
+            // Let the user know if no such task exists.
+            if (!taskFound) {
+                System.out.println("No such task id matches: " + taskID + "\n");
+            }
+
+            // Let the user know what was changed
+            System.out.println("Task " + taskID + " was deleted.\n");
+
+            // ask user if they'd like to repeat function
+            System.out.println("Would you like to delete another task? (y/n): ");
+            done = myScan.nextLine();
+        }
     }
 
     // This function will allow the user to search task titles.
