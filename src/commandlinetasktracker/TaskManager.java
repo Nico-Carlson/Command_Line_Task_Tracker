@@ -137,13 +137,16 @@ public class TaskManager {
     public static void searchTasks() {
 
         // Initialize variable to store search.
-        String searchTxt = "";
+        String userText = "";
+        String userTextLower = "";
+        String taskTitle = "";
         boolean foundTask = false;
 
         // Get user input for task title.
         try {
             System.out.println("What is the title of the task: ");
-            searchTxt = myScan.nextLine();
+            userText = myScan.nextLine();
+            userTextLower = userText.toLowerCase();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -151,16 +154,18 @@ public class TaskManager {
         // Iterate through the arraylist to find the correct task.
         for (Task t : taskArrayList) {
 
+            taskTitle = t.getTitle().toLowerCase();
+
             // Check to see if taskTitle matches.
-            if (t.getTitle().contains(searchTxt)) {
-                System.out.println(t + "\n");
+            if (t.getTitle().toLowerCase().contains(userTextLower)) {
+                System.out.println("\n" + t + "\n");
                 foundTask = true;
             }
         }
 
         // If no match was found, inform the user.
         if (!foundTask) {
-            System.out.println("No task containing " + searchTxt + " was found");
+            System.out.println("No task containing " + userText + " was found\n");
         }
     }
 
@@ -209,6 +214,21 @@ public class TaskManager {
 
         // set which file to read
         File myFile = new File("savedTasks.txt");
+//
+        // first make the file if it doesnt already exist
+        try {
+            if (myFile.createNewFile()) {
+
+                // Try to create the file
+                System.out.println("File created: " + myFile.getName() + "\n");
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            // Print error details
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
 
         // try to read the file
         try (BufferedReader myReader = new BufferedReader(new FileReader(myFile))) {
@@ -243,21 +263,21 @@ public class TaskManager {
     // This task saves new tasks...
     public static void saveTasks() {
 
-        // first make the file if it doesnt already exist
-        try {
-            File myObj = new File("savedTasks.txt");
-            if (myObj.createNewFile()) {
-
-                // Try to create the file
-                System.out.println("File created: " + myObj.getName() + "\n");
-            } else {
-                System.out.println("File already exists.");
-            }
-        } catch (IOException e) {
-            // Print error details
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
+//        // first make the file if it doesnt already exist
+//        try {
+//            File myObj = new File("savedTasks.txt");
+//            if (myObj.createNewFile()) {
+//
+//                // Try to create the file
+//                System.out.println("File created: " + myObj.getName() + "\n");
+//            } else {
+//                System.out.println("File already exists.");
+//            }
+//        } catch (IOException e) {
+//            // Print error details
+//            System.out.println("An error occurred.");
+//            e.printStackTrace();
+//        }
 
 
         // attempt to write data to the file
