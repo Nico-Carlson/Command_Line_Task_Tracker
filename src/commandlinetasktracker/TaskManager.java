@@ -1,6 +1,6 @@
 /*
  * This class contains the logic
- * for using the application.
+ * for the app functionality.
  */
 
 package commandlinetasktracker;
@@ -63,13 +63,16 @@ public class TaskManager {
          Iterate through the arraylist of tasks
          and display to the user.
          */
-        for (Task task : taskArrayList) {
-            System.out.println(task + "\n");
+        for (Task t : taskArrayList) {
+            System.out.println(t + "\n");
         }
     }
 
     // This function will update a tasks to "completed".
     public static void completeTask() {
+
+        // Initialize taskFound.
+        boolean taskFound = false;
 
         // Get an id from the user.
         try {
@@ -86,16 +89,26 @@ public class TaskManager {
             // If the id matches, update completed.
             if (taskID == t.getID()) {
                 t.setCompleted(true);
+                taskFound = true;
+                break;
             }
+        }
+
+        // Let the user know if no such task exists.
+        if (!taskFound) {
+            System.out.println("No such task id matches: " + taskID + "\n");
         }
     }
 
     // This function allows the user to delete a task.
     public static void deleteTask() {
 
+        // Initialize taskFound.
+        boolean taskFound = false;
+
         // Get an id from the user.
         try {
-            System.out.println("What is the id of the task to complete: ");
+            System.out.println("What is the id of the task to delete: ");
             taskID = Integer.parseInt(myScan.nextLine());
 
         } catch (Exception e) {
@@ -108,8 +121,16 @@ public class TaskManager {
             // If the id matches, update completed.
             if (taskID == t.getID()) {
                 taskArrayList.remove(t);
+                taskFound = true;
+                break;
             }
         }
+
+        // Let the user know if no such task exists.
+        if (!taskFound) {
+            System.out.println("No such task id matches: " + taskID + "\n");
+        }
+
     }
 
     // This function will allow the user to search task titles.
@@ -132,14 +153,14 @@ public class TaskManager {
 
             // Check to see if taskTitle matches.
             if (t.getTitle().contains(searchTxt)) {
-                System.out.println(t);
+                System.out.println(t + "\n");
                 foundTask = true;
             }
         }
 
         // If no match was found, inform the user.
         if (!foundTask) {
-            System.out.println("No task matching " + searchTxt + " was found");
+            System.out.println("No task containing " + searchTxt + " was found");
         }
     }
 
